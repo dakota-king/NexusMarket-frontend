@@ -110,7 +110,7 @@ export function CartSidebar() {
 
                   {/* Vendor Items */}
                   <div className="space-y-3">
-                    {vendorCart.items.map((item) => (
+                    {vendorCart.items.map((item: CartItem) => (
                       <div key={item.id} className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                         {/* Product Image */}
                         <img

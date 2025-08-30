@@ -7,8 +7,8 @@ export interface User {
   lastName: string;
   role: UserRole;
   avatar?: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Vendor {
@@ -24,8 +24,8 @@ export interface Vendor {
   reviewCount: number;
   isVerified: boolean;
   isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Product {
@@ -45,8 +45,8 @@ export interface Product {
   reviewCount: number;
   isActive: boolean;
   isFeatured: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ProductVariant {
@@ -76,7 +76,7 @@ export interface Inventory {
   quantity: number;
   lowStockThreshold: number;
   isInStock: boolean;
-  lastUpdated: Date;
+  lastUpdated: string;
 }
 
 export interface CartItem {
@@ -85,6 +85,7 @@ export interface CartItem {
   variantId?: number;
   quantity: number;
   price: number;
+  compareAtPrice?: number;
   vendorId: number;
   vendorName: string;
   productName: string;
@@ -115,8 +116,8 @@ export interface Order {
   billingAddress: Address;
   paymentMethod: PaymentMethod;
   paymentStatus: PaymentStatus;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface OrderItem {
@@ -191,8 +192,8 @@ export interface Review {
   title: string;
   comment: string;
   images?: string[];
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Notification {
@@ -203,7 +204,7 @@ export interface Notification {
   message: string;
   isRead: boolean;
   data?: Record<string, any>;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export interface Analytics {
@@ -218,5 +219,5 @@ export interface Analytics {
 export interface SocketEvent {
   type: string;
   data: any;
-  timestamp: Date;
+  timestamp: string;
 }

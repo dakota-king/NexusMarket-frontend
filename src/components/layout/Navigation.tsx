@@ -2,17 +2,14 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-// Temporarily disabled Clerk authentication to get app running
-// import { useUser, SignInButton, SignOutButton, UserButton } from '@clerk/nextjs'
+import { useUser, SignInButton, SignOutButton, UserButton } from '@clerk/nextjs'
 import { Search, ShoppingCart, Menu, X, Heart } from 'lucide-react'
 import { useStore } from '@/lib/stores/useStore'
 import { cn } from '@/lib/utils'
 
 export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  // Temporarily disabled Clerk authentication to get app running
-  // const { user } = useUser()
-  const user = null // Temporary mock user
+  const { user } = useUser()
   const { cart, searchQuery, setSearchQuery, setSidebarOpen, wishlist } = useStore()
   
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0)
@@ -105,14 +102,16 @@ export function Navigation() {
                   User Profile
                 </button>
               </div>
-            ) : (
-              <div className="flex items-center space-x-4">
-                <button className="btn-outline">Sign In</button>
-                <Link href="/sign-up" className="btn-primary">
-                  Sign Up
-                </Link>
-              </div>
-            )}
+                          ) : (
+                <div className="flex items-center space-x-4">
+                  <SignInButton mode="modal">
+                    <button className="btn-outline">Sign In</button>
+                  </SignInButton>
+                  <Link href="/sign-up" className="btn-primary">
+                    Sign Up
+                  </Link>
+                </div>
+              )}
           </div>
 
           {/* Mobile menu button */}

@@ -1,7 +1,6 @@
-import { currentUser } from '@clerk/nextjs'
+import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import { RoleGate } from '@/components/auth/RoleGate'
-import { UserRole } from '@/types'
 
 export default async function DashboardPage() {
   const user = await currentUser()
@@ -32,14 +31,14 @@ export default async function DashboardPage() {
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     <span className="font-medium">Email:</span> {user.emailAddresses[0]?.emailAddress}
                   </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    <span className="font-medium">Role:</span> {user.publicMetadata?.role || 'No role assigned'}
-                  </p>
+                                     <p className="text-sm text-gray-600 dark:text-gray-400">
+                     <span className="font-medium">Role:</span> {(user.publicMetadata?.role as string) || 'No role assigned'}
+                   </p>
                 </div>
               </div>
 
               {/* Role-based Content */}
-              <RoleGate allowedRoles={[UserRole.ADMIN]}>
+                                    <RoleGate allowedRoles={['admin']}>
                 <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
                   <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-4">
                     Admin Panel
@@ -58,7 +57,7 @@ export default async function DashboardPage() {
                 </div>
               </RoleGate>
 
-              <RoleGate allowedRoles={[UserRole.VENDOR]}>
+                                    <RoleGate allowedRoles={['vendor']}>
                 <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg border border-green-200 dark:border-green-800">
                   <h3 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-4">
                     Vendor Dashboard
@@ -77,7 +76,7 @@ export default async function DashboardPage() {
                 </div>
               </RoleGate>
 
-              <RoleGate allowedRoles={[UserRole.CUSTOMER]}>
+                                    <RoleGate allowedRoles={['customer']}>
                 <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-lg border border-purple-200 dark:border-purple-800">
                   <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-4">
                     Customer Dashboard
